@@ -7,16 +7,14 @@ RUN sed -i -e 's/v[[:digit:]]\.[[:digit:]]/edge/g' /etc/apk/repositories \
     && apk add --update \
         git \
         curl \
+        libffi-dev \
         postgis@testing \
         postgresql-plpython2 \
         build-base \
         perl \
         python2-dev \
         py2-pip \
-        py2-cffi \
-        py-boto \
-        py2-asn1crypto \
-    && pip install -U pip appdirs pgxnclient \
+    && pip install -U pip pgxnclient \
     && pgxn install multicorn \
     && pgxn install pgtap \
     && pgxn install plv8 \
