@@ -15,6 +15,7 @@ RUN sed -i -e 's/v[[:digit:]]\.[[:digit:]]/edge/g' /etc/apk/repositories \
     && pip install -U pip pgxnclient \
     && pgxn install multicorn \
     && pgxn install pgtap \
+    && pgxn install plv8 \
     && cd / \
     && apk del --purge build-base \
     && rm -rf /var/cache/apk/*
