@@ -5,6 +5,7 @@ RUN sed -i -e 's/v[[:digit:]]\.[[:digit:]]/edge/g' /etc/apk/repositories \
     && echo '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
     && apk upgrade --update-cache --available \
     && apk add --update \
+        git \
         curl \
         postgis@testing \
         postgresql-plpython2 \
