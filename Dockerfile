@@ -10,7 +10,7 @@ ARG V8_DIR=/usr/local/v8
 ARG BUILD_COMMIT=fb6dc3aba5f080908acb63b6dcd544c25051d793
 ARG BUILDTOOLS_COMMIT=b7d53a93026d04002ca0705b5bf002de79c72165
 ARG ICU_COMMIT=e4194dc7bbb3305d84cbb1b294274ca70d230721
-ARG GTEST_COMMIT=a6f06bf2fd3b832822cd4e9e554b7d47f32ec084
+ARG GTEST_COMMIT=ec44c6c1675c25b9827aacd08c02433cccde7780
 ARG TRACE_EVENT_COMMIT=211b3ed9d0481b4caddbee1322321b86a483ca1f
 ARG GYP_COMMIT=d61a9397e668fa9843c4aa7da9e79460fe590bfb
 ARG CLANG_COMMIT=ec200e7a8308f301ade483408bcc79ca17ceb11e
@@ -49,7 +49,7 @@ RUN set -x \
     chromium/src/third_party/markupsafe.git@${MARKUPSAFE_COMMIT}:third_party/markupsafe; \
     chromium/deps/icu.git@${ICU_COMMIT}:third_party/icu; \
     external/gyp.git@${GYP_COMMIT}:tools/gyp; \
-    external/github.com/google/googletest.git@${GTEST_COMMIT}:third_party/googletest/src \
+    external/github.com/google/googletest.git@${GTEST_COMMIT}:testing \
   " \
   && while [ "${DEPS}" ]; do \
     dep="${DEPS%%;*}" \
@@ -75,6 +75,7 @@ RUN set -x \
   && curl -fSL --connect-timeout 30 ${GN_SOURCE} | tar xmz -C /tmp/v8/buildtools/linux64/ \
   && : "---------- Build instructions ----------" \
   && cd /tmp/v8 \
+  && mv testing/googletest testing/gtest \
   && ./tools/dev/v8gen.py \
     x64.release \
     -- \
