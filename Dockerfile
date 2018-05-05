@@ -9,7 +9,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
         curl \
         linux-headers \
         postgis@testing \
-        postgresql-plpython2 \
         build-base \
         perl \
         python2-dev \
@@ -18,8 +17,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
     && pgxn install multicorn \
     && pgxn install pgtap \
     && cp /usr/local/v8/lib/* /usr/local/lib/ \
-    && cd /usr/lib/postgresql && cp address_standardizer-2.4.so plpython2.so postgis* rtpostgis-2.4.so /usr/local/lib/postgresql/ \
-    && cd /usr/share/postgresql/extension && cp postgis* address_standardizer* plpython* /usr/local/share/postgresql/extension/ \
+    && cd /usr/lib/postgresql && cp address_standardizer-2.4.so postgis* rtpostgis-2.4.so /usr/local/lib/postgresql/ \
+    && cd /usr/share/postgresql/extension && cp postgis* address_standardizer* /usr/local/share/postgresql/extension/ \
     && cd /tmp && pgxn download plv8 && unzip plv8-2.3.3.zip && cd plv8-2.3.3/ \
     && V8_SRCDIR=/usr/local/v8 make -f Makefile.shared \
     && V8_SRCDIR=/usr/local/v8 make -f Makefile.shared install \
